@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// https://www.geeksforgeeks.org/problems/word-wrap1646/1
+
 class Solution{
     int solveWordWrap(vector<int> arr, int k){
         int n= arr.size();
