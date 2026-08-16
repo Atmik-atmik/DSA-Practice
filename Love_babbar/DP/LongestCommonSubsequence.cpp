@@ -3,7 +3,34 @@ using namespace std;
 
 //https://leetcode.com/problems/longest-common-subsequence/description/
 
-// Need to do tabular method
+//  tabular method
+
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.length();
+        int m = text2.length();
+
+        vector<vector<int>>dp(n+1, vector<int>(m+1, 0)); //here n+1 becaseu i have to use after last index char comparision ,becaseu every pair index LCS depend on later index. 
+        //Here n+1 is size of array where last index no. will be n , similarly for m
+
+        for(int i=n-1; i>=0;i--){
+            for(int j = m-1;j>=0; j--){
+
+                if(text1[i] == text2[j]){
+                    dp[i][j] = 1 + dp[i+1][j+1];    
+                }else{
+                    dp[i][j] = max(dp[i][j+1], dp[i+1][j]);
+                }
+            }
+        }
+
+        return dp[0][0];
+    }
+};
+
+
+//memoisation
 class Solution {
 public:
     int solve(string text1, string text2, int i, int j, vector<vector<int>>&dp){
